@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import DatePicker from 'react-date-picker';
 import DatePicker from 'react-datepicker';
 import TimezoneSelect from 'react-timezone-select';
 import { saveAs } from 'file-saver';
@@ -24,7 +23,6 @@ const WeeklyScheduler = () => {
     setSelectedTimezone(timezone);
   };
 
-  // Function to format time to include AM/PM
   const formatTime = (time) => {
     const [hour, minute] = time.split(":");
     const formattedHour = parseInt(hour, 10) % 12 || 12;
@@ -32,7 +30,6 @@ const WeeklyScheduler = () => {
     return `${formattedHour}:${minute} ${period}`;
   };
 
-  // Function to generate and save JSON file
   const generateAndSaveJsonFile = () => {
     const jsonData = weeklySchedule.flatMap((daySchedule) =>
       daySchedule.schedule.map((slot) => ({
@@ -50,8 +47,6 @@ const WeeklyScheduler = () => {
   };
 
   useEffect(() => {
-    // Fetch and set weekly working days, times, and checkboxes based on selectedDate and selectedTimezone
-    // You can implement your logic to load weekly working days, times, and checkboxes here
     const generateWeeklySchedule = () => {
       const startHour = 8;
       const endHour = 23;
@@ -84,10 +79,9 @@ const WeeklyScheduler = () => {
   }, [selectedDate, selectedTimezone]);
 
   return (
-    <div>
+    <div className='container'>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div onClick={() => handleWeekChange('prev')} style={{ cursor: "pointer", alignSelf: "center" }}>Previous Week</div>
-        {/* <DatePicker onChange={handleDateChange} value={selectedDate} /> */}
         <DatePicker selected={selectedDate} onChange={handleDateChange} />
         <div onClick={() => handleWeekChange('next')} style={{ cursor: "pointer", alignSelf: "center" }}>Next Week</div>
       </div>
